@@ -43,7 +43,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "outputPath": "dist/nfc-stamp-rally",
+            "outputPath": "docs",
             "index": "src/index.html",
             "main": "src/main.ts",
             "polyfills": "src/polyfills.ts",
@@ -150,5 +150,8 @@
       }
     }
   },
-  "defaultProject": "nfc-stamp-rally"
+  "defaultProject": "nfc-stamp-rally",
+  "cli": {
+    "analytics": false
+  }
 }

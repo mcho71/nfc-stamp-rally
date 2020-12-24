@@ -3,15 +3,15 @@ import { Component } from '@angular/core';
 const STAMPS = [
   {
     name: 'head',
-    imagePath: '/assets/stamps/1.png'
+    imagePath: 'assets/stamps/1.png'
   },
   {
     name: 'neck',
-    imagePath: '/assets/stamps/2.png'
+    imagePath: 'assets/stamps/2.png'
   },
   {
     name: 'leg',
-    imagePath: '/assets/stamps/3.png'
+    imagePath: 'assets/stamps/3.png'
   }
 ] as const;
 
