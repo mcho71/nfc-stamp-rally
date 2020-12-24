@@ -50,13 +50,11 @@ export class AppComponent {
     try {
       let errorCount = 0;
       this.ndef!.addEventListener("error", () => {
-        const stampName = NFCCardSerialNumberStampNameMap.get('' + errorCount);
-        // @ts-ignore
-        const stamp = this.stamps.find(stamp => stamp.name === stampName);
-        if (stamp) {
-          stamp.correct = true;
-          errorCount++;
+        if (errorCount >= this.stamps.length) {
+          return;
         }
+        this.stamps[errorCount].correct = true;
+        errorCount++;
       });
       // @ts-ignore
       this.ndef.addEventListener("reading", ({ serialNumber }) => {
