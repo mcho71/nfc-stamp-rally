@@ -37,11 +37,12 @@ export class AppComponent {
   ndef?: NDEFReader;
 
   resetStamp() {
+    if (!confirm('本当に最初から始める？')) return;
     for (const stamp of this.stamps) {
       stamp.correct = false;
     }
   }
-
+　
   async start() {
     if (!this.scanning && !await this.startScan()) {
       return;
