@@ -1,6 +1,9 @@
 <h1>
   {{ title }}
 </h1>
+<button (click)="scanning ? resetStamp() : start()" [class]="scanning ? 'reset-button' : 'start-button'">
+  {{ scanning ? '最初から始める' : 'スタート' }}
+</button>
 <ul class="stamp-list">
   <li *ngFor="let stamp of stamps">
     <img *ngIf="stamp.correct; else elseTemplate" [src]="stamp.imagePath" [alt]="stamp.name">

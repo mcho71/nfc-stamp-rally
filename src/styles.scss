@@ -7,7 +7,6 @@ ul.stamp-list {
 
 ul.stamp-list > li {
   height: 59.5vw;
-
 }
 
 ul.stamp-list > li > img {
@@ -24,4 +23,28 @@ ul.stamp-list > li > .stamp-incorrect {
   color: #FFCEAA;
   border: 4px solid #FFF0DD;
   border-radius: 3em .8em 3em .7em/.9em 2em .8em 3em;
+}
+
+button {
+  width: 100%;
+  margin: 20px 0;
+  padding: 5px 30px;
+  border: none;
+  border-radius: 12px;
+  text-decoration: none!important;
+  font-size: 2.5rem;
+  color: #fff;
+}
+
+button.start-button {
+  background-color: #eb6100;
+}
+
+button.reset-button {
+  background-color: #55eeff;
+}
+
+button:hover,
+button:hover {
+  opacity: 0.8;
 }
