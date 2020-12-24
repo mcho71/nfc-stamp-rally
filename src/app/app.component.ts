@@ -47,6 +47,16 @@ export class AppComponent {
       return;
     }
     try {
+      let errorCount = 0;
+      this.ndef!.addEventListener("error", () => {
+        const stampName = NFCCardSerialNumberStampNameMap.get('' + errorCount);
+        // @ts-ignore
+        const stamp = this.stamps.find(stamp => stamp.name === stampName);
+        if (stamp) {
+          stamp.correct = true;
+          errorCount++;
+        }
+      });
       // @ts-ignore
       this.ndef.addEventListener("reading", ({ serialNumber }) => {
         const stampName = NFCCardSerialNumberStampNameMap.get(serialNumber);
