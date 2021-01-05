@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { environment } from 'src/environments/environment';
 
 const STAMPS = [
   {
@@ -16,9 +17,9 @@ const STAMPS = [
 ] as const;
 
 const NFCCardSerialNumberStampNameMap = new Map<string, typeof STAMPS[number]['name']>([
-  ['0', 'head'],
-  ['1', 'neck'],
-  ['2', 'leg']
+  [environment.serialNumbers[0], 'head'],
+  [environment.serialNumbers[1], 'neck'],
+  [environment.serialNumbers[2], 'leg']
 ]);
 
 @Component({
@@ -42,7 +43,7 @@ export class AppComponent {
       stamp.correct = false;
     }
   }
-　
+
   async start() {
     if (!this.scanning && !await this.startScan()) {
       return;
@@ -50,6 +51,7 @@ export class AppComponent {
     try {
       let errorCount = 0;
       this.ndef!.addEventListener("error", () => {
+        // WebNFC非対応のNFCのカードでも動くように、エラー内でもスタンプを押す処理を行っている
         if (errorCount >= this.stamps.length) {
           return;
         }
@@ -57,7 +59,7 @@ export class AppComponent {
         errorCount++;
       });
       // @ts-ignore
-      this.ndef.addEventListener("reading", ({ serialNumber }) => {
+      this.ndef!.addEventListener("reading", ({ serialNumber }) => {
         const stampName = NFCCardSerialNumberStampNameMap.get(serialNumber);
         // @ts-ignore
         const stamp = this.stamps.find(stamp => stamp.name === stampName);
